@@ -5,8 +5,8 @@
 
 import json
 
-with open('allthemana.json') as f:
+with open('contract_bets.json') as f:
     d = json.load(f)
-    for txn in d:
-        if txn['from_id'] == "qJHrvvGfGsYiHZkGY6XjVfIMj233":
-            print(txn['amount'])
+    for bet in d:
+        if bet['user_id'] == "4juQfJkFnwX9nws3dFOpz4gc1mi2":
+            print(bet)
