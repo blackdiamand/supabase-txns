@@ -8,12 +8,13 @@ async function getUsers() {
   const txns = [];
   do {
     const result = await fetch(
-      `https://pxidrgkatumlvfqaxcll.supabase.co/rest/v1/txns?${new URLSearchParams(
+      `https://pxidrgkatumlvfqaxcll.supabase.co/rest/v1/contract_bets?${new URLSearchParams(
         {
           select,
           order,
           limit,
           created_time: `gt.${lastCreatedTime}`,
+          user_id: `eq.4juQfJkFnwX9nws3dFOpz4gc1mi2`,
         }
       )}`,
       {
@@ -25,12 +26,20 @@ async function getUsers() {
         method: 'GET',
       }
     );
+    //console.log()
     const newTxns = await result.json();
+    //console.log(newTxns)
     if (newTxns.length === 0) {
       break;
     }
-    lastCreatedTime = newTxns[newTxns.length - 1].created_time;
-    txns.push(...newTxns);
+    try {
+      lastCreatedTime = newTxns[newTxns.length - 1].created_time;
+      txns.push(...newTxns);
+      console.log(lastCreatedTime);
+    }
+    catch (e){
+      console.log(e);
+    }
   } while (true);
   return txns;
 }

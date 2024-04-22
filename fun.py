@@ -8,5 +8,6 @@ import json
 with open('contract_bets.json') as f:
     d = json.load(f)
     for bet in d:
-        if bet['user_id'] == "4juQfJkFnwX9nws3dFOpz4gc1mi2":
+        if bet['data']['visibility'] == "private":
             print(bet)
+        #Todo: balance cache and 
